@@ -1,0 +1,9 @@
+CREATE TABLE vk(
+  id int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  owner_id bigint NOT NULL,
+  note_id int NOT NULL,
+  datetime timestamp NOT NULL,
+  human boolean NOT NULL,
+  link varchar(100) NOT NULL,
+  note varchar(200) NOT NULL
+);

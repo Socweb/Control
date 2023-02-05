@@ -1,0 +1,63 @@
+1. Установить Postgresql
+# Если не из под root'a
+sudo apt-get install postgresql
+# Иначе
+apt-get install postgresql
+
+2. Зайти в Postgresql
+# Если не из под root'a
+sudo su
+su postgres
+psql
+# Иначе
+su postgres
+psql
+
+3.Создать пользователя и базу (здесь имя пользователя,пароль и имя базы - tutor)
+CREATE USER tutor WITH ENCRYPTED PASSWORD 'tutor';
+ALTER ROLE tutor LOGIN;
+CREATE DATABASE tutor;
+GRANT ALL ON DATABASE tutor TO tutor;
+
+3.1 Создаём базу для ВК
+CREATE TABLE vk(
+  id int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  owner_id bigint NOT NULL,
+  note_id int NOT NULL,
+  datetime timestamp NOT NULL,
+  human boolean NOT NULL,
+  link varchar(100) NOT NULL,
+  note varchar(200) NOT NULL
+);
+
+3.2 Создаём техническую базу
+CREATE TABLE technical_data(
+  id int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  datetime timestamp NOT NULL,
+  social_network varchar(2) NOT NULL
+);
+
+4. Создаём бота через отца ботов
+В тг находим бота @BotFather. Вводим команду /newbot, вводим его имя
+и получаем токен
+
+5. Добавляем в файл .env следующие строки
+
+# Номер телефона для учётки в ВК
+PHONE = '+XXXXXXXX'
+# Пароль в ВК
+PASSWORD = 'XXXXXXXX'
+
+# Токен, полученный от отца ботов
+TOKEN_TG = 'XXXXXXXXXXX'
+
+# Данные для Postgresql
+PG_LOGIN = 'tutor'
+PG_PASSWORD = 'tutor'
+PG_DB = 'tutor'
+
+6. Запускаем скрипты
+nohup python vk.py &
+nohup python tg.py &
+
+7. Проверяем бота

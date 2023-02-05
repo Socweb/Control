@@ -1,0 +1,5 @@
+CREATE TABLE technical_data(
+  id int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  datetime timestamp NOT NULL,
+  social_network varchar(2) NOT NULL
+);
