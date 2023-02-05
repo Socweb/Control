@@ -1,3 +1,4 @@
+-- Тестовый комментарий
 CREATE TABLE technical_data(
   id int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   datetime timestamp NOT NULL,
